@@ -3,10 +3,16 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 import { firebaseSetting } from '../setting';
 
-import { Header } from './component/common';
+import { Header, Spinner } from './component/common';
 import LoginForm from './component/loginForm';
+import SignOut from './component/signOut';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { loggedIn: null };
+  }
 
   componentWillMount() {
     firebase.initializeApp(firebaseSetting);
@@ -19,11 +25,22 @@ class App extends Component {
     });
   }
 
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return <SignOut onPress={() => this.setState({ loggedIn: false })} />;
+      case false:
+        return <LoginForm />;
+      default:
+        return <Spinner size="large" />;
+    }
+  }
+
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Header text="Authetication" />
-        <LoginForm />
+        {this.renderContent()}
       </View>
     );
   }
