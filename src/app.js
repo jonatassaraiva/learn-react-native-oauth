@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
+import { firebaseSetting } from '../setting';
 
 import { Header } from './component/common';
-import { firebaseSetting } from '../setting';
+import LoginForm from './component/loginForm';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <View>
         <Header text="Authetication" />
+        <LoginForm />
       </View>
     );
   }

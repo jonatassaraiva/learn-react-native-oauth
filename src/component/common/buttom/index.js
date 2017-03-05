@@ -12,7 +12,7 @@ const Button = ({ onPress, children }) => {
 };
 
 Button.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: React.PropTypes.any.isRequired,
   onPress: React.PropTypes.func.isRequired
 };
 
